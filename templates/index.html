@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Prédire le sentiment associé à un Tweet</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    </head>
+
+    <body>
+        <img src="https://user.oc-static.com/upload/2019/10/22/15717382019055_Capture%20d%E2%80%99e%CC%81cran%202019-10-22%20a%CC%80%2011.50.29.png">
+        <br>
+        <form action="predicted" method="post">
+            <p>Entrez le tweet ci-dessous</p>
+            <br>
+            <label for="tweet">Tweet :</label>
+            <input type="text" id="tweet" name="tweet" placeholder="Texte du tweet" required>
+            <br>
+            <input type="submit" value="Prédire" id="predict">
+        </form>
+
+    <br>
+    <p>Tweet testé : 
+
+        {% for message in get_flashed_messages(category_filter=["tweet"]) %}
+        {{ message }}
+        {% endfor %}
+
+    </p>
+    <p>Le sentiment associé à ce tweet est : <span id="sentiment">
+        {% for message in get_flashed_messages(category_filter=["prediction"]) %}
+        {{ message }}
+        {% endfor %}
+   </span></p>
+    </body>
+</html>
